@@ -1,0 +1,21 @@
+.PHONY: all clean install uninstall
+	
+all: hello
+	
+clean:
+	rm -rf hello *.o
+hello: main.o factorial.o hello.o
+	g++ main.o factorial.o hello.o -o hello
+
+main.o: main.cpp
+	g++ -c main.cpp
+
+factorial.o: factorial.cpp
+	g++ -c factorial.cpp
+
+hello.o: hello.cpp
+	g++ -c hello.cpp
+install:
+	install ./hello /usr/local/bin
+uninstall:
+	rm -rf /usr/local/bin/hello
